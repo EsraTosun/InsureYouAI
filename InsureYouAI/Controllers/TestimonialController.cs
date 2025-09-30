@@ -68,6 +68,7 @@ namespace InsureYouAI.Controllers
             client.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            //claude-3-5-sonnet-20241022
             var requestBody = new
             {
                 model = "claude-3-opus-20240229",
