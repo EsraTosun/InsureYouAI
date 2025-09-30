@@ -65,7 +65,7 @@ namespace InsureYouAI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateArticleWithOpenAI(string prompt)
         {
-            var apiKey = "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";
+            var apiKey = "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";
 
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
@@ -113,3 +113,5 @@ namespace InsureYouAI.Controllers
 }
 
 //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
+
+//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
