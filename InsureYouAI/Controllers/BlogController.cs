@@ -46,12 +46,11 @@ namespace InsureYouAI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddComment(Comment comment)
         {
-            comment.CommentDate = DateTime.Now;
-            comment.AppUserId = "38a28b4e-45d0-4976-8abd-2c72516d2df4";
-
+            comment.CommentDate = DateTime .Now;
+            comment.AppUserId = "ce53015c-ca49-4286-bc35-3948161501b8";
             using (var client = new HttpClient())
             {
-                var apiKey = "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";
+                var apiKey = "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";
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
                 try
@@ -64,7 +63,7 @@ namespace InsureYouAI.Controllers
                     var translateJson = JsonSerializer.Serialize(translateRequestBody);
                     var translateContent = new StringContent(translateJson, Encoding.UTF8, "application/json");
 
-                    var translateResponse = await client.PostAsync("https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tr-en", translateContent);
+                    var translateResponse = await client.PostAsync("https://router.huggingface.co/hf-inference/models/Helsinki-NLP/opus-mt-tr-en", translateContent);
                     var translateResponseString = await translateResponse.Content.ReadAsStringAsync();
 
                     string englishText = comment.CommentDetail;
@@ -83,13 +82,22 @@ namespace InsureYouAI.Controllers
 
                     var toxicJson = JsonSerializer.Serialize(toxicRequestBody);
                     var toxicContent = new StringContent(toxicJson, Encoding.UTF8, "application/json");
-                    var toxicResponse = await client.PostAsync("https://api-inference.huggingface.co/models/unitary/toxic-bert", toxicContent);
+                    var toxicResponse = await client.PostAsync("https://router.huggingface.co/hf-inference/models/unitary/toxic-bert", toxicContent);
                     var toxicResponseString = await toxicResponse.Content.ReadAsStringAsync();
 
                     if (toxicResponseString.TrimStart().StartsWith("["))
                     {
                         var toxicDoc = JsonDocument.Parse(toxicResponseString);
-                        foreach (var item in toxicDoc.RootElement[0].EnumerateArray())
+                        var root = toxicDoc.RootElement;
+
+                        JsonElement predictions;
+
+                        if (root[0].ValueKind == JsonValueKind.Array)
+                            predictions = root[0];
+                        else
+                            predictions = root;
+
+                        foreach (var item in predictions.EnumerateArray())
                         {
                             string label = item.GetProperty("label").GetString();
                             double score = item.GetProperty("score").GetDouble();
