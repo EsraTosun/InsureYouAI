@@ -26,6 +26,8 @@ namespace InsureYouAI.Context
         public DbSet<PricingPlanItem> PricingPlanItems { get; set; }
         public DbSet<Gallery> Galleries { get; set; }
         public DbSet<ClaudeAIMessage> ClaudeAIMessages { get; set; }
+        public DbSet<Revenue> Revenues { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
         public DbSet<Policy> Policies { get; set; } 
     }
 }
