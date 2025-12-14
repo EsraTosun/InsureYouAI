@@ -1,68 +1,62 @@
-﻿INSERT INTO Policies (PolicyNumber, PolicyType, AppUserId, PremiumAmount, StartDate, EndDate, Status, CreatedDate)
+﻿INSERT INTO Policies
+(PolicyNumber, PolicyType, AppUserId, PremiumAmount, StartDate, EndDate, Status, CreatedDate)
 VALUES
-('TRF-2025-001', 'Trafik', '38a28b4e-45d0-4976-8abd-2c72516d2df4', 2500, '2025-01-01', '2026-01-01', 'Active', GETDATE()),
-('KSK-2025-002', 'Kasko', '42284dcd-932e-4efa-b3b2-6218cb2a7852', 4800, '2025-02-15', '2026-02-15', 'Active', GETDATE()),
-('HLT-2025-003', 'Sağlık', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 5200, '2025-03-01', '2026-03-01', 'Active', GETDATE()),
-('CNT-2025-004', 'Konut', '6e13f340-69e4-428c-81a9-27ea810d86be', 3100, '2025-01-20', '2026-01-20', 'Active', GETDATE()),
-('TRF-2025-005', 'Trafik', '71ec3ad2-4071-4864-8ccb-716342244221', 2700, '2025-02-01', '2026-02-01', 'Active', GETDATE()),
-('HLT-2025-006', 'Sağlık', '9848261f-def9-41d0-932d-73fea3770ab8', 6000, '2025-04-10', '2026-04-10', 'Active', GETDATE()),
-('KSK-2025-007', 'Kasko', 'a0bdca62-a2a9-4de2-bbd5-404141c27eea', 7500, '2025-05-01', '2026-05-01', 'Active', GETDATE()),
-('TRF-2025-008', 'Trafik', 'bd9783bd-1fba-4b54-a1f4-83cc99f39533', 2400, '2025-02-01', '2026-02-01', 'Active', GETDATE()),
-('CNT-2025-009', 'Konut', 'f7510922-a357-4444-ae96-b9dbf16c7e2a', 4200, '2025-03-01', '2026-03-01', 'Active', GETDATE()),
-('HLT-2025-010', 'Sağlık', 'fcfd75f0-a100-4ed4-98a4-bda7fd740453', 5500, '2025-01-01', '2026-01-01', 'Active', GETDATE()),
+('POL-0001','Sağlık Sigortası','08739166-c657-4e41-801f-73621b79497d',4500,'2024-01-01','2025-01-01','Active',GETDATE()),
+('POL-0002','Araç Sigortası','16a1d2a9-a69e-4fe0-8424-1eb307553ac4',7200,'2024-02-01','2025-02-01','Active',GETDATE()),
+('POL-0003','Konut Sigortası','225b507e-6d64-4f6d-b798-e37cd7a234a0',3900,'2024-03-01','2025-03-01','Active',GETDATE()),
+('POL-0004','Seyahat Sigortası','36b0f55f-5f05-4a8c-95a3-acb970e9b7b7',1800,'2024-01-15','2024-07-15','Active',GETDATE()),
+('POL-0005','Sağlık Sigortası','84f82b87-2f2e-4f4d-b320-713dbcbb1231',5100,'2024-04-01','2025-04-01','Active',GETDATE()),
 
-('TRF-2025-011', 'Trafik', '38a28b4e-45d0-4976-8abd-2c72516d2df4', 2650, '2025-03-01', '2026-03-01', 'Active', GETDATE()),
-('HLT-2025-012', 'Sağlık', '42284dcd-932e-4efa-b3b2-6218cb2a7852', 5800, '2025-04-01', '2026-04-01', 'Active', GETDATE()),
-('KSK-2025-013', 'Kasko', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 7200, '2025-02-01', '2026-02-01', 'Active', GETDATE()),
-('CNT-2025-014', 'Konut', '6e13f340-69e4-428c-81a9-27ea810d86be', 3300, '2025-05-01', '2026-05-01', 'Active', GETDATE()),
-('TRF-2025-015', 'Trafik', '71ec3ad2-4071-4864-8ccb-716342244221', 2900, '2025-03-01', '2026-03-01', 'Active', GETDATE()),
-('HLT-2025-016', 'Sağlık', '9848261f-def9-41d0-932d-73fea3770ab8', 6100, '2025-06-01', '2026-06-01', 'Active', GETDATE()),
-('KSK-2025-017', 'Kasko', 'a0bdca62-a2a9-4de2-bbd5-404141c27eea', 8000, '2025-07-01', '2026-07-01', 'Active', GETDATE()),
-('CNT-2025-018', 'Konut', 'bd9783bd-1fba-4b54-a1f4-83cc99f39533', 4400, '2025-04-01', '2026-04-01', 'Active', GETDATE()),
-('TRF-2025-019', 'Trafik', 'f7510922-a357-4444-ae96-b9dbf16c7e2a', 2600, '2025-05-01', '2026-05-01', 'Active', GETDATE()),
-('HLT-2025-020', 'Sağlık', 'fcfd75f0-a100-4ed4-98a4-bda7fd740453', 5900, '2025-03-01', '2026-03-01', 'Active', GETDATE());
+('POL-0006','Araç Sigortası','9c337d5d-9686-4357-8a8a-f17965d155dc',6800,'2024-05-01','2025-05-01','Active',GETDATE()),
+('POL-0007','Konut Sigortası','ce53015c-ca49-4286-bc35-3948161501b8',4200,'2024-06-01','2025-06-01','Active',GETDATE()),
+('POL-0008','Sağlık Sigortası','deb61a69-cbcd-4e46-8f2e-151fa5f98710',4700,'2024-01-10','2025-01-10','Active',GETDATE()),
+('POL-0009','Seyahat Sigortası','e60aab91-b5de-45c9-87d6-69c9e438b8ee',2100,'2024-07-01','2024-12-31','Active',GETDATE()),
+('POL-0010','Araç Sigortası','e631176a-40aa-46c6-ab41-40ae2cdd0963',7500,'2024-02-15','2025-02-15','Active',GETDATE()),
 
+('POL-0011','Sağlık Sigortası','08739166-c657-4e41-801f-73621b79497d',5200,'2024-08-01','2025-08-01','Active',GETDATE()),
+('POL-0012','Konut Sigortası','16a1d2a9-a69e-4fe0-8424-1eb307553ac4',3600,'2024-03-10','2025-03-10','Active',GETDATE()),
+('POL-0013','Araç Sigortası','225b507e-6d64-4f6d-b798-e37cd7a234a0',8100,'2024-09-01','2025-09-01','Active',GETDATE()),
+('POL-0014','Seyahat Sigortası','36b0f55f-5f05-4a8c-95a3-acb970e9b7b7',1950,'2024-04-20','2024-10-20','Active',GETDATE()),
+('POL-0015','Sağlık Sigortası','84f82b87-2f2e-4f4d-b320-713dbcbb1231',4800,'2024-05-15','2025-05-15','Active',GETDATE()),
 
+('POL-0016','Araç Sigortası','9c337d5d-9686-4357-8a8a-f17965d155dc',6900,'2024-06-10','2025-06-10','Active',GETDATE()),
+('POL-0017','Konut Sigortası','ce53015c-ca49-4286-bc35-3948161501b8',4100,'2024-07-01','2025-07-01','Active',GETDATE()),
+('POL-0018','Sağlık Sigortası','deb61a69-cbcd-4e46-8f2e-151fa5f98710',5300,'2024-08-15','2025-08-15','Active',GETDATE()),
+('POL-0019','Seyahat Sigortası','e60aab91-b5de-45c9-87d6-69c9e438b8ee',2300,'2024-09-01','2025-03-01','Active',GETDATE()),
+('POL-0020','Araç Sigortası','e631176a-40aa-46c6-ab41-40ae2cdd0963',7700,'2024-10-01','2025-10-01','Active',GETDATE()),
 
----------------------------------------------------
+('POL-0021','Sağlık Sigortası','08739166-c657-4e41-801f-73621b79497d',4900,'2024-11-01','2025-11-01','Active',GETDATE()),
+('POL-0022','Konut Sigortası','16a1d2a9-a69e-4fe0-8424-1eb307553ac4',3700,'2024-12-01','2025-12-01','Active',GETDATE()),
+('POL-0023','Araç Sigortası','225b507e-6d64-4f6d-b798-e37cd7a234a0',8300,'2024-01-05','2025-01-05','Active',GETDATE()),
+('POL-0024','Seyahat Sigortası','36b0f55f-5f05-4a8c-95a3-acb970e9b7b7',2000,'2024-02-20','2024-08-20','Active',GETDATE()),
+('POL-0025','Sağlık Sigortası','84f82b87-2f2e-4f4d-b320-713dbcbb1231',5500,'2024-03-15','2025-03-15','Active',GETDATE()),
 
-INSERT INTO Policies (PolicyNumber, PolicyType, AppUserId, PremiumAmount, StartDate, EndDate, Status, CreatedDate)
-VALUES
-('KSK-2025-021', 'Kasko', '38a28b4e-45d0-4976-8abd-2c72516d2df4', 7700, '2025-06-01', '2026-06-01', 'Active', GETDATE()),
-('HLT-2025-022', 'Sağlık', '42284dcd-932e-4efa-b3b2-6218cb2a7852', 6300, '2025-05-01', '2026-05-01', 'Active', GETDATE()),
-('TRF-2025-023', 'Trafik', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 2800, '2025-07-01', '2026-07-01', 'Active', GETDATE()),
-('CNT-2025-024', 'Konut', '6e13f340-69e4-428c-81a9-27ea810d86be', 3500, '2025-06-15', '2026-06-15', 'Active', GETDATE()),
-('KSK-2025-025', 'Kasko', '71ec3ad2-4071-4864-8ccb-716342244221', 7400, '2025-08-01', '2026-08-01', 'Active', GETDATE()),
-('TRF-2025-026', 'Trafik', '9848261f-def9-41d0-932d-73fea3770ab8', 2550, '2025-09-01', '2026-09-01', 'Active', GETDATE()),
-('HLT-2025-027', 'Sağlık', 'a0bdca62-a2a9-4de2-bbd5-404141c27eea', 6500, '2025-07-10', '2026-07-10', 'Active', GETDATE()),
-('KSK-2025-028', 'Kasko', 'bd9783bd-1fba-4b54-a1f4-83cc99f39533', 8100, '2025-05-15', '2026-05-15', 'Active', GETDATE()),
-('CNT-2025-029', 'Konut', 'f7510922-a357-4444-ae96-b9dbf16c7e2a', 4100, '2025-08-01', '2026-08-01', 'Active', GETDATE()),
-('TRF-2025-030', 'Trafik', 'fcfd75f0-a100-4ed4-98a4-bda7fd740453', 2750, '2025-10-01', '2026-10-01', 'Active', GETDATE()),
+('POL-0026','Araç Sigortası','9c337d5d-9686-4357-8a8a-f17965d155dc',7100,'2024-04-01','2025-04-01','Active',GETDATE()),
+('POL-0027','Konut Sigortası','ce53015c-ca49-4286-bc35-3948161501b8',4300,'2024-05-01','2025-05-01','Active',GETDATE()),
+('POL-0028','Sağlık Sigortası','deb61a69-cbcd-4e46-8f2e-151fa5f98710',5600,'2024-06-01','2025-06-01','Active',GETDATE()),
+('POL-0029','Seyahat Sigortası','e60aab91-b5de-45c9-87d6-69c9e438b8ee',2500,'2024-07-01','2024-12-01','Active',GETDATE()),
+('POL-0030','Araç Sigortası','e631176a-40aa-46c6-ab41-40ae2cdd0963',7900,'2024-08-01','2025-08-01','Active',GETDATE()),
 
-('HLT-2025-031', 'Sağlık', '38a28b4e-45d0-4976-8abd-2c72516d2df4', 5700, '2025-06-01', '2026-06-01', 'Active', GETDATE()),
-('KSK-2025-032', 'Kasko', '42284dcd-932e-4efa-b3b2-6218cb2a7852', 7200, '2025-09-01', '2026-09-01', 'Active', GETDATE()),
-('CNT-2025-033', 'Konut', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 3600, '2025-08-01', '2026-08-01', 'Active', GETDATE()),
-('TRF-2025-034', 'Trafik', '6e13f340-69e4-428c-81a9-27ea810d86be', 2600, '2025-11-01', '2026-11-01', 'Active', GETDATE()),
-('HLT-2025-035', 'Sağlık', '71ec3ad2-4071-4864-8ccb-716342244221', 6200, '2025-07-01', '2026-07-01', 'Active', GETDATE()),
-('KSK-2025-036', 'Kasko', '9848261f-def9-41d0-932d-73fea3770ab8', 7900, '2025-10-01', '2026-10-01', 'Active', GETDATE()),
-('TRF-2025-037', 'Trafik', 'a0bdca62-a2a9-4de2-bbd5-404141c27eea', 2850, '2025-12-01', '2026-12-01', 'Active', GETDATE()),
-('CNT-2025-038', 'Konut', 'bd9783bd-1fba-4b54-a1f4-83cc99f39533', 4700, '2025-09-15', '2026-09-15', 'Active', GETDATE()),
-('HLT-2025-039', 'Sağlık', 'f7510922-a357-4444-ae96-b9dbf16c7e2a', 6800, '2025-11-01', '2026-11-01', 'Active', GETDATE()),
-('KSK-2025-040', 'Kasko', 'fcfd75f0-a100-4ed4-98a4-bda7fd740453', 8300, '2025-08-20', '2026-08-20', 'Active', GETDATE());
+('POL-0031','Sağlık Sigortası','08739166-c657-4e41-801f-73621b79497d',5100,'2024-09-01','2025-09-01','Active',GETDATE()),
+('POL-0032','Konut Sigortası','16a1d2a9-a69e-4fe0-8424-1eb307553ac4',3900,'2024-10-01','2025-10-01','Active',GETDATE()),
+('POL-0033','Araç Sigortası','225b507e-6d64-4f6d-b798-e37cd7a234a0',8500,'2024-11-01','2025-11-01','Active',GETDATE()),
+('POL-0034','Seyahat Sigortası','36b0f55f-5f05-4a8c-95a3-acb970e9b7b7',2100,'2024-12-01','2025-06-01','Active',GETDATE()),
+('POL-0035','Sağlık Sigortası','84f82b87-2f2e-4f4d-b320-713dbcbb1231',5800,'2024-01-20','2025-01-20','Active',GETDATE()),
 
----------------------------------------------------
+('POL-0036','Araç Sigortası','9c337d5d-9686-4357-8a8a-f17965d155dc',7300,'2024-02-01','2025-02-01','Active',GETDATE()),
+('POL-0037','Konut Sigortası','ce53015c-ca49-4286-bc35-3948161501b8',4500,'2024-03-01','2025-03-01','Active',GETDATE()),
+('POL-0038','Sağlık Sigortası','deb61a69-cbcd-4e46-8f2e-151fa5f98710',6000,'2024-04-01','2025-04-01','Active',GETDATE()),
+('POL-0039','Seyahat Sigortası','e60aab91-b5de-45c9-87d6-69c9e438b8ee',2700,'2024-05-01','2024-11-01','Active',GETDATE()),
+('POL-0040','Araç Sigortası','e631176a-40aa-46c6-ab41-40ae2cdd0963',8200,'2024-06-01','2025-06-01','Active',GETDATE()),
 
-INSERT INTO Policies (PolicyNumber, PolicyType, AppUserId, PremiumAmount, StartDate, EndDate, Status, CreatedDate)
-VALUES
-('TRF-2025-041', 'Trafik', '38a28b4e-45d0-4976-8abd-2c72516d2df4', 2950, '2025-09-01', '2026-09-01', 'Active', GETDATE()),
-('HLT-2025-042', 'Sağlık', '42284dcd-932e-4efa-b3b2-6218cb2a7852', 6400, '2025-12-01', '2026-12-01', 'Active', GETDATE()),
-('KSK-2025-043', 'Kasko', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 7600, '2025-11-01', '2026-11-01', 'Active', GETDATE()),
-('CNT-2025-044', 'Konut', '6e13f340-69e4-428c-81a9-27ea810d86be', 3900, '2025-10-01', '2026-10-01', 'Active', GETDATE()),
-('TRF-2025-045', 'Trafik', '71ec3ad2-4071-4864-8ccb-716342244221', 2800, '2025-12-15', '2026-12-15', 'Active', GETDATE()),
-('HLT-2025-046', 'Sağlık', '9848261f-def9-41d0-932d-73fea3770ab8', 7000, '2025-09-01', '2026-09-01', 'Active', GETDATE()),
-('KSK-2025-047', 'Kasko', 'a0bdca62-a2a9-4de2-bbd5-404141c27eea', 8200, '2025-11-20', '2026-11-20', 'Active', GETDATE()),
-('CNT-2025-048', 'Konut', 'bd9783bd-1fba-4b54-a1f4-83cc99f39533', 4500, '2025-12-01', '2026-12-01', 'Active', GETDATE()),
-('TRF-2025-049', 'Trafik', 'f7510922-a357-4444-ae96-b9dbf16c7e2a', 3000, '2025-08-01', '2026-08-01', 'Active', GETDATE()),
-('HLT-2025-050', 'Sağlık', 'fcfd75f0-a100-4ed4-98a4-bda7fd740453', 7200, '2025-10-10', '2026-10-10', 'Active', GETDATE());
+('POL-0041','Sağlık Sigortası','08739166-c657-4e41-801f-73621b79497d',5300,'2024-07-01','2025-07-01','Active',GETDATE()),
+('POL-0042','Konut Sigortası','16a1d2a9-a69e-4fe0-8424-1eb307553ac4',4100,'2024-08-01','2025-08-01','Active',GETDATE()),
+('POL-0043','Araç Sigortası','225b507e-6d64-4f6d-b798-e37cd7a234a0',8700,'2024-09-01','2025-09-01','Active',GETDATE()),
+('POL-0044','Seyahat Sigortası','36b0f55f-5f05-4a8c-95a3-acb970e9b7b7',2300,'2024-10-01','2025-04-01','Active',GETDATE()),
+('POL-0045','Sağlık Sigortası','84f82b87-2f2e-4f4d-b320-713dbcbb1231',6000,'2024-11-01','2025-11-01','Active',GETDATE()),
 
---------------------------------------------------------------------
+('POL-0046','Araç Sigortası','9c337d5d-9686-4357-8a8a-f17965d155dc',7600,'2024-12-01','2025-12-01','Active',GETDATE()),
+('POL-0047','Konut Sigortası','ce53015c-ca49-4286-bc35-3948161501b8',4700,'2024-01-01','2025-01-01','Active',GETDATE()),
+('POL-0048','Sağlık Sigortası','deb61a69-cbcd-4e46-8f2e-151fa5f98710',6200,'2024-02-01','2025-02-01','Active',GETDATE()),
+('POL-0049','Seyahat Sigortası','e60aab91-b5de-45c9-87d6-69c9e438b8ee',2900,'2024-03-01','2024-09-01','Active',GETDATE()),
+('POL-0050','Araç Sigortası','e631176a-40aa-46c6-ab41-40ae2cdd0963',8400,'2024-04-01','2025-04-01','Active',GETDATE());
