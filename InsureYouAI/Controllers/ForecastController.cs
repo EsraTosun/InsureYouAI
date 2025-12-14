@@ -22,17 +22,28 @@ namespace InsureYouAI.Controllers
                     Year = g.Key.Year,
                     Month = g.Key.Month,
                     Count = g.Count()
-                }).AsEnumerable()
+                })
+                .AsEnumerable()
                 .Select(g => new PolicySalesData
                 {
                     Date = new DateTime(g.Year, g.Month, 1),
                     SaleCount = g.Count
-                }).OrderBy(x => x.Date).ToList();
+                })
+                .OrderBy(x => x.Date)
+                .ToList();
 
             var forecast = _forecastService.GetForecast(salesData, horizon: 3);
-            ViewBag.Forecast = forecast;
 
+            for (int i = 0; i < forecast.ForecastedValues.Length; i++)
+            {
+                forecast.ForecastedValues[i] = Math.Max(0, forecast.ForecastedValues[i]);
+                forecast.LowerBoundValues[i] = Math.Max(0, forecast.LowerBoundValues[i]);
+                forecast.UpperBoundValues[i] = Math.Max(0, forecast.UpperBoundValues[i]);
+            }
+
+            ViewBag.Forecast = forecast;
             return View(salesData);
         }
+
     }
 }
