@@ -19,6 +19,12 @@ namespace InsureYouAI.Controllers
             return View();
         }
 
+        public IActionResult GetBlogByCategory(int id)
+        {
+            ViewBag.c = id;
+            return View();
+        }
+
         public IActionResult BlogDetail(int id)
         {
             ViewBag.i = id;
