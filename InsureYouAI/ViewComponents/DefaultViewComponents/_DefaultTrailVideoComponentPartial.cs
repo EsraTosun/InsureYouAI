@@ -1,7 +1,7 @@
 ﻿using InsureYouAI.Context;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InsureYouAINew.ViewComponents.DefaultViewComponents
+namespace InsureYouAI.ViewComponents.DefaultViewComponents
 {
     public class _DefaultTrailVideoComponentPartial : ViewComponent
     {

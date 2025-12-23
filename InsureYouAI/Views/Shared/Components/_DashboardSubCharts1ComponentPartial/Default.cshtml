@@ -24,7 +24,7 @@
     var policyData = @Html.Raw(ViewBag.policyData);
 
     var seriesData = policyData.map(x => x.Count);
-    var labelsData = policyData.map(x => x.PolicyType);
+    var labelsData = policyData.map(x => x.Name);
 
     var options = {
         chart: {

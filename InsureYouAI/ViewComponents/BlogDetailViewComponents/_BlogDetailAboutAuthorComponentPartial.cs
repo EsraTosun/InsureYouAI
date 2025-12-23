@@ -1,7 +1,7 @@
 ﻿using InsureYouAI.Context;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InsureYouAINew.ViewComponents.BlogDetailViewComponents
+namespace InsureYouAI.ViewComponents.BlogDetailViewComponents
 {
     public class _BlogDetailAboutAuthorComponentPartial : ViewComponent
     {

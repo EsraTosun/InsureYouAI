@@ -1,5 +1,6 @@
 ﻿using InsureYouAI.Context;
 using InsureYouAI.Models;
+using InsureYouAI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsureYouAI.ViewComponents.DashboardViewComponents

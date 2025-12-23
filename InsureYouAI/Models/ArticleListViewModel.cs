@@ -1,4 +1,4 @@
-﻿namespace InsureYouAINew.Models
+﻿namespace InsureYouAI.Models
 {
     public class ArticleListViewModel
     {

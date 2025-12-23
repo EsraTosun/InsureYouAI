@@ -1,0 +1,164 @@
+﻿<div class="row g-4 dashboard-cards mt-4">
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-purple">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.TotalCategoryCount</h4>
+                        <p class="mb-1 text-white">Toplam Kategori</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-primary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.TotalArticleCount</h4>
+                        <p class="mb-1 text-white">Toplam Makale</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-chat-left-text-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-orange">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.TotalPoliciesCount</h4>
+                        <p class="mb-1 text-white">Satılan Poliçe Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-share-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-success">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.TotalPoliciesByThisMonthCount</h4>
+                        <p class="mb-1 text-white">Bu Ay Satılan Poliçe Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-browser-edge"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end row-->
+
+<div class="row g-4 dashboard-cards">
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-pink">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.TotalCommentCount</h4>
+                        <p class="mb-1 text-white">Toplam Yorum Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-warning">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.TotalUserCount</h4>
+                        <p class="mb-1 text-white">Toplam Kullanıcı Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-chat-left-text-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-secondary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.AvgPolicyAmount.ToString("0.00") ₺</h4>
+                        <p class="mb-1 text-white">Ortalama Poliçe Tutarı / ₺</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-share-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card rounded-4 bg-info">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.LastRevenueAmount ₺</h4>
+                        <p class="mb-1 text-white">Son Yapılan Poliçe Tutarı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-browser-edge"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end row-->
+
+<style>
+    /* Kart genel */
+    .dashboard-cards .card {
+        border-radius: 1rem;
+        min-height: 120px;
+    }
+
+    /* Card body sadece padding versin */
+    .dashboard-cards .card-body {
+        padding: 1.25rem;
+    }
+
+        /* İç d-flex satırı yönetsin */
+        .dashboard-cards .card-body > .d-flex {
+            width: 100%;
+        }
+
+    /* Sol yazı alanı */
+    .dashboard-cards h4,
+    .dashboard-cards p {
+        margin: 0;
+    }
+
+    /* İkon sabit ve ortalı */
+    .dashboard-cards .fs-3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Mobil iyileştirme */
+    @@media (max-width: 576px) {
+        .dashboard-cards .card {
+            min-height: 100px;
+        }
+    }
+</style>
+

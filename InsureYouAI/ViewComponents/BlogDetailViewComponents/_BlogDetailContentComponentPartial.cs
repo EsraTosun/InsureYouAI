@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace InsureYouAINew.ViewComponents.BlogDetailViewComponents
+namespace InsureYouAI.ViewComponents.BlogDetailViewComponents
 {
     public class _BlogDetailContentComponentPartial : ViewComponent
     {

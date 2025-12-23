@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace InsureYouAINew.ViewComponents.BlogViewComponents
+namespace InsureYouAI.ViewComponents.BlogViewComponents
 {
     public class _BlogListByCategoryComponentPartial:ViewComponent
     {

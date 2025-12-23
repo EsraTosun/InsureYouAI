@@ -1,8 +1,8 @@
 ﻿using InsureYouAI.Context;
-using InsureYouAINew.Models;
+using InsureYouAI.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InsureYouAINew.ViewComponents.BlogViewComponents
+namespace InsureYouAI.ViewComponents.BlogViewComponents
 {
     public class _BlogListCategoriesComponentPartial : ViewComponent
     {
