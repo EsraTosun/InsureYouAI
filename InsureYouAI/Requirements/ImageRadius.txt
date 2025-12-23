@@ -1,0 +1,16 @@
+﻿<style>
+.avatar-img img {
+    width: 120px;           /* Görselin boyutu */
+    height: 120px;
+    border-radius: 50%;     /* Yuvarlak görünüm */
+    object-fit: cover;      /* Görselin taşmasını engeller */
+    border: 3px solid #ddd; /* İnce gri çerçeve */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.avatar-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+}
+</style>

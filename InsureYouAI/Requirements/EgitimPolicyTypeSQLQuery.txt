@@ -1,0 +1,12 @@
+﻿INSERT INTO [InsureDb].[dbo].[Policies]
+(PolicyNumber, PolicyType, AppUserId, PremiumAmount, StartDate, EndDate, Status, CreatedDate)
+VALUES
+('EDU-2025-001', 'Eğitim', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 8500, '2025-01-15', '2026-01-15', 'Active', GETDATE()),
+
+('EDU-2025-002', 'Eğitim', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 9200, '2025-02-01', '2026-02-01', 'Active', GETDATE()),
+
+('EDU-2025-003', 'Eğitim', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 7800, '2025-03-10', '2026-03-10', 'Active', GETDATE()),
+
+('EDU-2025-004', 'Eğitim', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 8900, '2025-04-05', '2026-04-05', 'Active', GETDATE()),
+
+('EDU-2025-005', 'Eğitim', '5990c2bf-aa74-403a-8d76-ef634573ae8d', 9600, '2025-05-20', '2026-05-20', 'Active', GETDATE())

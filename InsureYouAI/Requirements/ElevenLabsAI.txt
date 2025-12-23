@@ -1,0 +1,74 @@
+﻿  if (string.IsNullOrWhiteSpace(text))
+            {
+                ViewBag.Error = "Lütfen metin gir.";
+                return View();
+            }
+
+            var apiKey = "";
+            var voiceId = "EXAVITQu4vr4xnSDxMaL";  // Rachel
+
+            var url = $"https://api.elevenlabs.io/v1/text-to-speech/{voiceId}/stream";
+
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Add("xi-api-key", apiKey);
+
+            var requestBody = new
+            {
+                text = text,
+                model_id = "eleven_multilingual_v2",
+                voice_settings = new
+                {
+                    stability = 0.5,
+                    similarity_boost = 0.8
+                }
+            };
+
+            var json = System.Text.Json.JsonSerializer.Serialize(requestBody);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(url, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ViewBag.Error = "Ses oluşturulamadı. Model veya voice ID hatalı olabilir.";
+                return View();
+            }
+
+            var audioBytes = await response.Content.ReadAsByteArrayAsync();
+
+            var fileName = $"eleven_{Guid.NewGuid()}.mp3";
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "voices", fileName);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+            await System.IO.File.WriteAllBytesAsync(filePath, audioBytes);
+
+            ViewBag.AudioUrl = "/voices/" + fileName;
+            return View();
+
+
+----------------------------------------------------------------
+
+<h2>ElevenLabs – Text to Speech 🎧</h2>
+
+<form method="post">
+    <textarea name="text" class="form-control" rows="5" placeholder="Metni buraya yaz..."></textarea>
+    <br />
+    <button class="btn btn-primary">Sesi Oluştur</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+}
+
+@if (ViewBag.AudioUrl != null)
+{
+    <h4 class="mt-4">Oluşturulan Ses:</h4>
+    <audio controls>
+        <source src="@ViewBag.AudioUrl" type="audio/mpeg" />
+        Tarayıcınız audio tagini desteklemiyor.
+    </audio>
+}
+
+-----------------------------------------------------------------------
+

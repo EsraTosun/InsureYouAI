@@ -1,9 +1,11 @@
 ﻿using InsureYouAI.Context;
 using InsureYouAI.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
 
-namespace InsureYouAI.Controllers
+namespace InsureYouAINew.Controllers
 {
     public class ArticleController : Controller
     {
@@ -14,13 +16,38 @@ namespace InsureYouAI.Controllers
         }
         public IActionResult ArticleList()
         {
-            var values = _context.Articles.ToList();
+            ViewBag.ControllerName = "Makaleler";
+            ViewBag.PageName = "Makale Listesi";
+            var values = _context.Articles.Include(x => x.AppUser).ToList();
             return View(values);
         }
 
         [HttpGet]
         public IActionResult CreateArticle()
         {
+            ViewBag.ControllerName = "Makaleler";
+            ViewBag.PageName = "Yeni Makale Oluştur";
+
+            var categories = _context.Categories
+                           .Select(x => new SelectListItem
+                           {
+                               Text = x.CategoryName,
+                               Value = x.CategoryId.ToString()
+                           })
+                           .ToList();
+
+            ViewBag.Categories = categories;
+
+            var authors = _context.Users
+                         .Select(x => new SelectListItem
+                         {
+                             Text = x.Name + " " + x.Surname,
+                             Value = x.Id
+                         })
+                         .ToList();
+
+            ViewBag.Authors = authors;
+
             return View();
         }
 
@@ -36,6 +63,30 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public IActionResult UpdateArticle(int id)
         {
+
+            ViewBag.ControllerName = "Makaleler";
+            ViewBag.PageName = "Makale Güncelleme Sayfası";
+
+            var categories = _context.Categories
+                           .Select(x => new SelectListItem
+                           {
+                               Text = x.CategoryName,
+                               Value = x.CategoryId.ToString()
+                           })
+                           .ToList();
+
+            ViewBag.Categories = categories;
+
+            var authors = _context.Users
+                         .Select(x => new SelectListItem
+                         {
+                             Text = x.Name + " " + x.Surname,
+                             Value = x.Id
+                         })
+                         .ToList();
+
+            ViewBag.Authors = authors;
+
             var value = _context.Articles.Find(id);
             return View(value);
         }
@@ -59,13 +110,15 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public IActionResult CreateArticleWithOpenAI()
         {
+            ViewBag.ControllerName = "Makaleler";
+            ViewBag.PageName = "Yapay Zeka Makale Oluşturucu";
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateArticleWithOpenAI(string prompt)
         {
-            var apiKey = "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";
+            var apiKey = "";
 
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
@@ -111,7 +164,3 @@ namespace InsureYouAI.Controllers
         }
     }
 }
-
-//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
-
-//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

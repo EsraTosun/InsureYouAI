@@ -1,0 +1,155 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML;
+using YourProject.Models; // ViewModel
+using YourProject.Data;   // DbContext
+
+public class _PolicyForecastComponentPartial : ViewComponent
+{
+    private readonly InsureDbContext _context;
+
+    public _PolicyForecastComponentPartial(InsureDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        // 1) Veri Hazırlığı – Son 6 Ay
+        var rawData = _context.Policies
+            .Where(x => x.CreatedDate >= new DateTime(2025, 5, 1) &&
+                        x.CreatedDate <= new DateTime(2025, 11, 30))
+            .GroupBy(x => x.PolicyType)
+            .Select(g => new
+            {
+                PolicyType = g.Key,
+                MonthlyCounts = g
+                    .GroupBy(z => new { z.CreatedDate.Year, z.CreatedDate.Month })
+                    .Select(s => new { Month = s.Key.Month, Count = s.Count() })
+                    .OrderBy(s => s.Month)
+                    .ToList()
+            })
+            .ToList();
+
+        // 2) ML.NET Tahmin İçin Setup
+        var ml = new MLContext();
+
+        List<PolicyForecastViewModel> result = new();
+
+        foreach (var item in rawData)
+        {
+            // ML.NET için input formatı
+            var mlData = item.MonthlyCounts.Select(m => new PolicyMonthlyData
+            {
+                MonthIndex = m.Month, 
+                Value = m.Count
+            });
+
+            var dataView = ml.Data.LoadFromEnumerable(mlData);
+
+            var pipeline = ml.Forecasting.ForecastBySsa(
+                outputColumnName: "Forecast",
+                inputColumnName: "Value",
+                windowSize: 3,
+                seriesLength: 6,
+                trainSize: 6,
+                horizon: 1);
+
+            var model = pipeline.Fit(dataView);
+
+            var forecastEngine = model.CreateTimeSeriesEngine<PolicyMonthlyData, PolicyForecastOutput>(ml);
+
+            var prediction = forecastEngine.Predict();
+
+            int predicted = (int)prediction.Forecast[0];
+
+            result.Add(new PolicyForecastViewModel
+            {
+                PolicyType = item.PolicyType,
+                ForecastCount = predicted
+            });
+        }
+
+        // 3) Yüzde Hesabı
+        int total = result.Sum(x => x.ForecastCount);
+
+        foreach (var item in result)
+            item.Percentage = total > 0 ? (item.ForecastCount * 100 / total) : 0;
+
+        return View(result);
+    }
+}
+
+
+// ML.NET Veri Modelleri
+public class PolicyMonthlyData
+{
+    public float MonthIndex { get; set; }
+    public float Value { get; set; }
+}
+
+public class PolicyForecastOutput
+{
+    public float[] Forecast { get; set; }
+}
+
+
+
+---------------------------------------------------------
+
+
+@model List<PolicyForecastViewModel>
+
+@functions {
+    string GetEmoji(string policyType)
+    {
+        return policyType switch
+        {
+            "Eğitim" => "🎓",
+            "Kasko"  => "🚗",
+            "Konut"  => "🏠",
+            "Sağlık" => "🩺",
+            "Trafik" => "🚦",
+            _ => "📄"
+        };
+    }
+}
+
+<div class="col-12 col-lg-6 col-xl-6 d-flex">
+    <div class="card rounded-4 w-100">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <h6 class="mb-0">Aralık 2025 Tahmini Poliçe Satışları</h6>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="d-flex align-items-start gap-3">
+
+                    <div class="product-box border d-flex justify-content-center align-items-center"
+                         style="width:45px; height:45px; border-radius:10px; font-size:24px;">
+                        @GetEmoji(item.PolicyType)
+                    </div>
+
+                    <div class="flex-grow-1">
+                        <div class="progress-wrapper">
+                            <p class="my-2">
+                                @item.PolicyType
+                                <span class="float-end">
+                                    (@item.ForecastCount Tahmin)
+                                    <span class="ms-3 fw-bold">@item.Percentage%</span>
+                                </span>
+                            </p>
+
+                            <div class="progress" style="height: 4px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width:@item.Percentage%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr />
+            }
+        </div>
+    </div>
+</div>

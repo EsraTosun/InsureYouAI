@@ -1,0 +1,394 @@
+﻿namespace YourProjectNamespace.Models
+{
+    public class AIInsuranceRecommendationViewModel
+    {
+        // Kullanıcıdan alınacak alanlar
+        public int? Age { get; set; }
+        public string? Occupation { get; set; }
+        public string? City { get; set; }
+        public string? MaritalStatus { get; set; }
+        public int? ChildrenCount { get; set; }
+        public string? TravelFrequency { get; set; }     // "Yılda 1-2", "Yılda 3-5", "Sık seyahat" gibi
+        public decimal? MonthlyBudget { get; set; }      // Aylık maksimum bütçe
+        public bool HasChronicDisease { get; set; }
+        public string? ChronicDiseaseDetails { get; set; }
+        public string? CoveragePriority { get; set; }    // "Sağlık", "Seyahat", "Araç", "Genel" vb.
+
+        // AI çıktısı SONRA doldurulacak, şu anlık boş dursun
+        public string? RecommendedPackage { get; set; }
+        public string? SecondBestPackage { get; set; }
+        public string? AnalysisText { get; set; }
+    }
+}
+
+
+---------------------------------------------------------
+
+@model YourProjectNamespace.Models.AIInsuranceRecommendationViewModel
+
+@{
+    ViewData["Title"] = "AI Destekli Fiyat Planı Önerisi";
+    // Burayı projene göre değiştir:
+    Layout = "~/Views/UILayout/Index.cshtml"; 
+    // veya: Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="pt-100 pb-100 bg-light">
+    <div class="container">
+        <div class="row">
+            <!-- Sol taraf: Başlık + Açıklama -->
+            <div class="col-lg-6 mb-4">
+                <h2 class="mb-3">Esnek ve Uygun Fiyat Planlarımız</h2>
+                <p class="mb-4">
+                    Aşağıdaki kısa formu doldurun, AI destekli sigorta asistanımız 
+                    sizin için en uygun fiyat planını önersin.
+                </p>
+
+                <form asp-action="Index" asp-controller="AiPlan" method="post" id="aiPlanForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Yaş</label>
+                            <input asp-for="Age" class="form-control" type="number" min="18" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Şehir</label>
+                            <input asp-for="City" class="form-control" placeholder="İstanbul, Ankara..." />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Meslek</label>
+                            <input asp-for="Occupation" class="form-control" placeholder="Yazılım Mühendisi, Öğretmen..." />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Medeni Durum</label>
+                            <select asp-for="MaritalStatus" class="form-select">
+                                <option value="">Seçiniz</option>
+                                <option>Bekar</option>
+                                <option>Evli</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Çocuk Sayısı</label>
+                            <input asp-for="ChildrenCount" class="form-control" type="number" min="0" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Seyahat Sıklığı</label>
+                            <select asp-for="TravelFrequency" class="form-select">
+                                <option value="">Seçiniz</option>
+                                <option>Yılda 1-2 kez</option>
+                                <option>Yılda 3-5 kez</option>
+                                <option>Sık seyahat ediyorum</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Aylık Maksimum Bütçe (TL)</label>
+                            <input asp-for="MonthlyBudget" class="form-control" type="number" step="0.01" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Teminat Önceliği</label>
+                            <select asp-for="CoveragePriority" class="form-select">
+                                <option value="">Seçiniz</option>
+                                <option>Sağlık</option>
+                                <option>Araç</option>
+                                <option>Seyahat</option>
+                                <option>Genel Koruma</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 mb-2 form-check">
+                            <input asp-for="HasChronicDisease" class="form-check-input" type="checkbox" />
+                            <label class="form-check-label" for="HasChronicDisease">
+                                Kronik bir hastalığım var
+                            </label>
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <label class="form-label">Kronik Hastalık Detayı (opsiyonel)</label>
+                            <textarea asp-for="ChronicDiseaseDetails" class="form-control" rows="2"
+                                      placeholder="Diyabet, tansiyon vb."></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary px-4 py-2">
+                                AI ile Bana Uygun Planı Öner
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sağ taraf: Şimdilik BOŞ, AI sonucu buraya gelecek -->
+            <div class="col-lg-6">
+                @* Bir sonraki adımda, AI analiz sonucu (önerilen paket + açıklama)
+                   kartlarını burada göstereceğiz. Şimdilik placeholder bırakıyoruz. *@
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">AI Tavsiye Alanı</h5>
+                        <p class="text-muted mb-0">
+                            Formu doldurup gönderdiğinizde, AI destekli asistanımızın
+                            sizin için seçeceği en uygun paket ve detaylı analiz burada görünecek.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+------------------------------------------------------
+
+[HttpPost]
+        public async Task<IActionResult> Index(AIInsuranceRecommendationViewModel model)
+        {
+            // Kullanıcı girdilerini JSON'a çeviriyoruz
+            var userJson = JsonConvert.SerializeObject(model);
+
+            // OpenAI'ye göndereceğimiz prompt:
+            var prompt = $@"
+Sen profesyonel bir sigorta uzmanı AI asistanısın. 
+Aşağıdaki kullanıcının bilgilerini analiz ederek en uygun sigorta paketini öner.
+
+Paketler ve özellikleri:
+1) Premium Paket (599 TL/ay): Yatarak tedavi, check-up, geniş yol yardım, yurtiçi seyahat güvencesi.
+2) Standart Paket (449 TL/ay): Acil sağlık, müşteri hizmetleri, kaza sonrası tıbbi destek.
+3) Ekonomik Paket (339 TL/ay): Temel sağlık, temel yol yardım.
+
+Kullanıcı bilgileri:
+{userJson}
+
+Sadece şu formatta JSON döndür:
+
+{{
+  ""onerilenPaket"": ""Premium | Standart | Ekonomik"",
+  ""ikinciSecenek"": ""Premium | Standart | Ekonomik"",
+  ""neden"": ""Kısa analiz metni""
+}}
+";
+
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", _openAiApiKey);
+
+            var body = new
+            {
+                model = "gpt-4.1-mini",
+                messages = new[]
+                {
+                    new { role = "user", content = prompt }
+                }
+            };
+
+            var jsonBody = JsonConvert.SerializeObject(body);
+            var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+            dynamic ai = JsonConvert.DeserializeObject(jsonResponse);
+            string aiResult = ai.choices[0].message.content;
+
+            // AI cevabı JSON formatında gelmiş olacak
+            var result = JsonConvert.DeserializeObject<AIInsuranceRecommendationViewModel>(aiResult);
+
+            // Sonuçları modele geri yazıyoruz
+            model.RecommendedPackage = result.RecommendedPackage;
+            model.SecondBestPackage = result.SecondBestPackage;
+            model.AnalysisText = result.AnalysisText;
+
+            return View(model);
+        }
+
+--------------------------------------------------------------
+
+<div class="col-lg-6">
+
+    @if (!string.IsNullOrEmpty(Model.RecommendedPackage))
+    {
+        <!-- AI sonuç kartı -->
+        <div class="card shadow-sm mb-4 border-0" style="border-radius: 12px;">
+            <div class="card-body p-4">
+
+                <h5 class="text-primary fw-bold mb-3">
+                    <i class="bi bi-stars"></i> AI Tarafından Senin İçin Önerilen Paket
+                </h5>
+
+                <div class="p-3 mb-3"
+                     style="background: #f7faff; border-left: 5px solid #4a7cff; border-radius: 8px;">
+                    <h4 class="fw-bold mb-1">@Model.RecommendedPackage</h4>
+                    <span class="badge bg-primary px-3 py-2" style="font-size: 14px;">
+                        En Uygun Eşleşme
+                    </span>
+                </div>
+
+                <h6 class="fw-bold mb-2">Neden Bu Paket?</h6>
+                <p class="text-muted" style="font-size: 15px;">
+                    @Model.AnalysisText
+                </p>
+
+                <hr />
+
+                <h6 class="fw-bold mb-2">Alternatif Öneri</h6>
+                <div class="p-3"
+                     style="background: #fff3cd; border-left: 5px solid #ffca2c; border-radius: 8px;">
+                    <h5 class="fw-bold mb-1 text-warning">@Model.SecondBestPackage</h5>
+                    <span class="badge bg-warning text-dark px-3 py-2" style="font-size: 14px;">
+                        İkinci En Uygun Seçenek
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- Bu kart SENİN istediğin placeholder kart. Tamamen duruyor. -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-3">AI Tavsiye Alanı</h5>
+                <p class="text-muted mb-0">
+                    Formu doldurup gönderdiğinizde, AI destekli asistanımızın
+                    sizin için seçeceği en uygun paket ve detaylı analiz burada görünecek.
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+
+-------------------------------------------------------------------------------------------------------
+
+public string? onerilenPaket { get; set; }
+public string? ikinciSecenek { get; set; }
+public string? neden { get; set; }
+
+------------------------------------------------------------------------------------------------------------------
+
+@model List<PricingPlan>
+
+@{
+    ViewData["Title"] = "PricingPlanList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="card shadow-sm" style="border-radius: 14px;">
+    <div class="card-body p-4">
+
+        <!-- Üst Header -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">Ödeme Planları</h3>
+                <p class="text-muted mb-0" style="font-size: 14px;">Sistemde tanımlı tüm fiyat planları</p>
+            </div>
+
+            <!-- Arama Kutusu -->
+            <div class="position-relative" style="width: 260px;">
+                <i class="bi bi-search position-absolute top-50 translate-middle-y ms-2 text-muted"></i>
+                <input class="form-control ps-5 py-2" type="text" placeholder="Aranacak kelime..." />
+            </div>
+        </div>
+
+        <!-- Tablo -->
+        <div class="table-responsive">
+            <table class="table align-middle table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <th class="text-muted">#</th>
+                        <th class="text-muted">Başlık</th>
+                        <th class="text-muted">Fiyat</th>
+                        <th class="text-muted">Durum</th>
+                        <th class="text-muted">Güncelle</th>
+                        <th class="text-muted">Sil</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        count++;
+
+                        string badgeClass = item.IsFeature
+                            ? "badge bg-success"
+                            : "badge bg-danger";
+
+                        string badgeText = item.IsFeature
+                            ? "Aktif"
+                            : "Pasif";
+
+                        <tr style="transition: 0.2s;">
+                            <td class="fw-bold">@count</td>
+
+                            <td class="fw-semibold">@item.Title</td>
+
+                            <td class="fw-semibold">
+                                @item.Price.ToString("N2") ₺
+                            </td>
+
+                            <td>
+                                <span class="@badgeClass px-3 py-2" style="font-size: 13px;">
+                                    @badgeText
+                                </span>
+                            </td>
+
+                            <td>
+                                <a href="/PricingPlan/ChangeStatus/@item.PricingPlanId" 
+                                   class="btn btn-outline-primary btn-sm px-3"
+                                   style="border-radius: 8px;">
+                                    <i class="bi bi-toggles"></i> Durum
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="/PricingPlan/UpdatePricingPlan/@item.PricingPlanId"
+                                   class="btn btn-outline-warning btn-sm px-3"
+                                   style="border-radius: 8px;">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="/PricingPlan/DeletePricingPlan/@item.PricingPlanId"
+                                   class="btn btn-outline-danger btn-sm px-3"
+                                   style="border-radius: 8px;">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Alt Butonlar -->
+        <div class="d-flex gap-3 mt-4">
+            <a href="/PricingPlan/CreatePricingPlan/" 
+               class="btn btn-primary px-4 py-2 fw-bold"
+               style="border-radius: 10px;">
+                <i class="bi bi-plus-circle me-1"></i> Yeni Fiyat Planı Girişi
+            </a>
+
+            <a href="/PricingPlan/CreateUserCustomizePlan/" 
+               class="btn btn-info px-4 py-2 fw-bold text-white"
+               style="border-radius: 10px;">
+                <i class="bi bi-stars me-1"></i> AI Destekli Sigorta Plan Önerisi
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Hover efekti */
+    table tbody tr:hover {
+        background-color: #f9fbff !important;
+        transform: scale(1.002);
+    }
+</style>

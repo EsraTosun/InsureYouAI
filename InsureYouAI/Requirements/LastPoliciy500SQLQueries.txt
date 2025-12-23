@@ -1,0 +1,89 @@
+﻿DECLARE @PolicyTypes TABLE (TypeName NVARCHAR(20));
+INSERT INTO @PolicyTypes VALUES
+('Eğitim'), ('Kasko'), ('Konut'), ('Sağlık'), ('Trafik');
+
+DECLARE @Users TABLE (Id UNIQUEIDENTIFIER);
+INSERT INTO @Users VALUES
+('38a28b4e-45d0-4976-8abd-2c72516d2df4'),
+('42284dcd-932e-4efa-b3b2-6218cb2a7852'),
+('5990c2bf-aa74-403a-8d76-ef634573ae8d'),
+('6e13f340-69e4-428c-81a9-27ea810d86be'),
+('71ec3ad2-4071-4864-8ccb-716342244221'),
+('9848261f-def9-41d0-932d-73fea3770ab8'),
+('a0bdca62-a2a9-4de2-bbd5-404141c27eea'),
+('bd9783bd-1fba-4b54-a1f4-83cc99f39533'),
+('f7510922-a357-4444-ae96-b9dbf16c7e2a'),
+('fcfd75f0-a100-4ed4-98a4-bda7fd740453');
+
+DECLARE @Months TABLE (MonthValue INT, TargetCount INT);
+INSERT INTO @Months VALUES
+(5, 65),   -- Mayıs
+(6, 70),   -- Haziran
+(7, 75),   -- Temmuz
+(8, 80),   -- Ağustos
+(9, 75),   -- Eylül
+(10, 70),  -- Ekim
+(11, 65);  -- Kasım
+
+DECLARE 
+    @Month INT,
+    @Target INT,
+    @i INT = 1,
+    @PolicyType NVARCHAR(20),
+    @UserId UNIQUEIDENTIFIER,
+    @Premium INT,
+    @CreatedDate DATETIME,
+    @StartDate DATETIME,
+    @EndDate DATETIME;
+
+DECLARE month_cursor CURSOR FOR 
+SELECT MonthValue, TargetCount FROM @Months;
+
+OPEN month_cursor;
+FETCH NEXT FROM month_cursor INTO @Month, @Target;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    SET @i = 1;
+
+    WHILE @i <= @Target
+    BEGIN
+        -- Poliçe türü seç
+        SELECT TOP 1 @PolicyType = TypeName 
+        FROM @PolicyTypes ORDER BY NEWID();
+
+        -- User seç
+        SELECT TOP 1 @UserId = Id 
+        FROM @Users ORDER BY NEWID();
+
+        -- Premium random
+        SET @Premium = (ABS(CHECKSUM(NEWID())) % 6000) + 4000;
+
+        -- Tarihler
+        SET @CreatedDate = DATEFROMPARTS(2025, @Month, ABS(CHECKSUM(NEWID())) % 28 + 1);
+        SET @StartDate = @CreatedDate;
+        SET @EndDate = DATEADD(YEAR, 1, @CreatedDate);
+
+        INSERT INTO Policies
+        (PolicyNumber, PolicyType, AppUserId, PremiumAmount, StartDate, EndDate, Status, CreatedDate, UpdatedDate)
+        VALUES
+        (
+            CONCAT(LEFT(@PolicyType, 3), '-2025-', FORMAT((SELECT COUNT(*) + 1 FROM Policies), '0000')),
+            @PolicyType,
+            @UserId,
+            @Premium,
+            @StartDate,
+            @EndDate,
+            'Active',
+            @CreatedDate,
+            NULL
+        );
+
+        SET @i = @i + 1;
+    END;
+
+    FETCH NEXT FROM month_cursor INTO @Month, @Target;
+END;
+
+CLOSE month_cursor;
+DEALLOCATE month_cursor;

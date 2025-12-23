@@ -1,0 +1,52 @@
+﻿<script src="https://cdn.ckeditor.com/4.20.1/standard-all/ckeditor.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("Content")) {
+            CKEDITOR.replace("Content", {
+                height: 400,
+                extraPlugins: 'colorbutton,font', // 🔥 renk ve font eklentilerini etkinleştir
+                toolbar: [
+                    { name: 'document', items: ['Source', '-', 'Preview'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                    { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor'] }, // 🎨 renk butonları
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
+                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'] },
+                    { name: 'insert', items: ['Image', 'Table', 'Link', 'Unlink'] },
+                    { name: 'tools', items: ['Maximize'] }
+                ]
+            });
+        }
+    });
+</script>
+
+  <textarea id="Content" name="Content" class="form-control" rows="15"></textarea>
+
+  ----------------------------------------------------------
+
+  Geleceğinizi Güvence Altına Alın: Sigortanın Hayatımızdaki Önemi
+
+Hayat, her zaman planladığımız gibi ilerlemeyebilir. Beklenmedik kazalar, hastalıklar veya doğal afetler, hem maddi hem de manevi açıdan zorlayıcı olabilir. İşte tam da bu noktada sigorta devreye girer. Sigorta, olası riskleri minimize ederek hem bireylerin hem de işletmelerin geleceğini güvence altına alır.
+
+Sigorta yaptırmak, yalnızca olası zararları karşılamak anlamına gelmez; aynı zamanda bir finansal planlama aracıdır. Sağlık sigortası, olası tedavi masraflarını üstlenirken; konut sigortası, evinizi yangın, sel veya hırsızlık gibi durumlara karşı korur. Trafik sigortası ise hem sizi hem de diğer sürücüleri maddi zararlardan koruyarak sosyal bir güvenlik sağlar.
+
+Dijitalleşen dünyada sigorta süreçleri de hızla gelişiyor. Artık birkaç tıklama ile poliçenizi oluşturabilir, prim ödemelerinizi takip edebilir ve hasar taleplerinizi online yapabilirsiniz. Bu sayede hem zaman kazanır hem de işlemlerinizi kolaylıkla yönetebilirsiniz.
+
+Unutmayın, sigorta bir lüks değil, geleceğe yapılan en akıllı yatırımlardan biridir. Kendinizi, ailenizi ve işinizi güvence altına almak, bugünden atacağınız en doğru adımlardan biri olacaktır.
+
+--------------------------------------------------------
+
+Hayat, her zaman planladığımız gibi ilerlemeyebilir. Beklenmedik kazalar, hastalıklar veya doğal afetler, hem maddi hem de manevi açıdan zorlayıcı olabilir. İşte tam da bu noktada sigorta devreye girer. Sigorta, olası riskleri minimize ederek hem bireylerin hem de işletmelerin geleceğini güvence altına alır.
+
+Sigorta yaptırmak, yalnızca olası zararları karşılamak anlamına gelmez; aynı zamanda bir finansal planlama aracıdır. Sağlık sigortası, olası tedavi masraflarını üstlenirken; konut sigortası, evinizi yangın, sel veya hırsızlık gibi durumlara karşı korur. Trafik sigortası ise hem sizi hem de diğer sürücüleri maddi zararlardan koruyarak sosyal bir güvenlik sağlar.
+
+Dijitalleşen dünyada sigorta süreçleri de hızla gelişiyor. Artık birkaç tıklama ile poliçenizi oluşturabilir, prim ödemelerinizi takip edebilir ve hasar taleplerinizi online yapabilirsiniz. Bu sayede hem zaman kazanır hem de işlemlerinizi kolaylıkla yönetebilirsiniz.
+
+Ancak sigorta yaptırırken dikkat edilmesi gereken bazı önemli noktalar vardır. Öncelikle, ihtiyacınıza en uygun sigorta türünü belirlemelisiniz. Her bireyin yaşam tarzı, gelir düzeyi ve risk profili farklıdır. Bu nedenle, sigorta poliçenizi seçerken yalnızca fiyat odaklı değil; kapsam, teminat limiti ve ek güvenceleri de dikkate almalısınız.
+
+Bir diğer önemli konu da sigorta şirketinin güvenilirliğidir. Poliçenizi imzalamadan önce şirketin geçmiş performansını, müşteri memnuniyetini ve hasar ödeme hızını araştırmak büyük önem taşır. Çünkü sigortanın değeri, aslında ihtiyaç anında ne kadar hızlı ve adil şekilde yanınızda olabildiğiyle ölçülür.
+
+Sigorta, aynı zamanda toplumsal bir dayanışma sistemidir. Bugün siz prim ödersiniz, yarın bir başkasının zararı karşılanır. Bu döngü, toplumun ekonomik olarak daha dirençli hale gelmesini sağlar. Özellikle deprem, sel gibi doğal afetlerin sık yaşandığı ülkelerde sigorta bilincinin artması, hem bireysel hem de ulusal ölçekte büyük bir fark yaratır.
+
+Sonuç olarak, sigorta bir masraf değil, geleceğe yapılan bilinçli bir yatırım olarak görülmelidir. Beklenmedik durumlarda “keşke yaptırsaydım” dememek için bugün bir adım atın. Çünkü sigorta, kayıpları önleyemez ama hayata yeniden güvenle başlamanızı sağlar.

@@ -21,13 +21,42 @@
             <input type="text" asp-for="MainCoverImageUrl" class="form-control" />
             <br />
             <label>Kategori</label>
-            <input type="text" asp-for="CategoryId" class="form-control" />
+            <select class="form-select" asp-items="ViewBag.Categories" asp-for="CategoryId">
+                <option value="">Kategori Seçiniz</option>
+            </select>
             <br />
-            <label>Makale</label>
-            <textarea class="form-control" asp-for="Content" rows="15"></textarea>
+            <label>Yazar</label>
+            <select class="form-select" asp-items="ViewBag.Authors" asp-for="AppUserId">
+                <option value="">Yazar Seçiniz</option>
+            </select>
+            <br />
+            <label>Makale İçeriği</label>
+            <textarea id="Content" name="Content" class="form-control" rows="15"></textarea>
             <br />
             <button class="btn btn-info">Makaleyi Oluştur</button>
         </form>
     </div>
 </div>
 
+<script src="https://cdn.ckeditor.com/4.20.1/standard-all/ckeditor.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("Content")) {
+            CKEDITOR.replace("Content", {
+                height: 400,
+                extraPlugins: 'colorbutton,font', // 🔥 renk ve font eklentilerini etkinleştir
+                toolbar: [
+                    { name: 'document', items: ['Source', '-', 'Preview'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                    { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor'] }, // 🎨 renk butonları
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
+                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'] },
+                    { name: 'insert', items: ['Image', 'Table', 'Link', 'Unlink'] },
+                    { name: 'tools', items: ['Maximize'] }
+                ]
+            });
+        }
+    });
+</script>

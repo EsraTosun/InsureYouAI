@@ -1,0 +1,144 @@
+﻿📨 1) KASKO – Poliçe Yenileme (Priority: Medium)
+
+Ad Soyad: Ahmet Ünsal
+Konu: Kasko Yenileme
+Email: ahmetunsal@gmail.com
+
+Mesaj:
+
+Merhaba, aracımın kasko poliçesi bu ay yenilenecekmiş.
+Yeni dönem için fiyat teklifi alabilir miyim?
+Geçen yılki teminatlar aynı şekilde devam edecek mi?
+
+AI_Category: Kasko – Poliçe Yenileme
+Priority: Medium
+
+📨 2) Trafik Sigortası – Bilgi Talebi (Priority: Low)
+
+Ad Soyad: Melike Yalçın
+Konu: Trafik Sigortası Soru
+Email: melikeyalcin@hotmail.com
+
+Mesaj:
+
+Trafik sigortası zorunlu mu yoksa isteğe bağlı mı?
+İlk kez araç alacağım, süreç hakkında bilgi alabilir miyim?
+
+AI_Category: Trafik Sigortası – Bilgi Talebi
+Priority: Low
+
+📨 3) Konut Sigortası – Su Baskını Hasarı (Priority: High)
+
+Ad Soyad: Nurettin Tatar
+Konu: Acil Su Baskını
+Email: nurettintt@gmail.com
+
+Mesaj:
+
+Evi su bastı, parkeler kabardı.
+Konut sigortam var, hemen hasar dosyası açtırmak istiyorum.
+Eksper ne zaman gelebilir?
+
+AI_Category: Konut Sigortası – Su Baskını Hasarı
+Priority: High
+
+📨 4) Sağlık Sigortası – Teminat Sorgusu (Priority: Medium)
+
+Ad Soyad: Yasemin Acar
+Konu: Sağlık Poliçesi
+Email: yasemina@gmail.com
+
+Mesaj:
+
+Özel sağlık sigortasında yatarak ve ayakta tedavi farkı nedir?
+Diş teminatı pakete dahil edilebiliyor mu?
+
+AI_Category: Sağlık Sigortası – Teminat Bilgisi
+Priority: Medium
+
+📨 5) Araç Hasar Bildirimi – Kaza (Priority: High)
+
+Ad Soyad: Emre Kınalı
+Konu: Kaza Bildirimi
+Email: emrekinalii@gmail.com
+
+Mesaj:
+
+Bugün arkadan çarptılar.
+Aracın tamponu kırıldı.
+Hasar dosyası oluşturmam gerekiyor, acil geri dönüş yapar mısınız?
+
+AI_Category: Araç Sigortası – Hasar Bildirimi
+Priority: High
+
+📨 6) Evcil Hayvan Sigortası – Fiyat Sorgusu (Priority: Low)
+
+Ad Soyad: Selin Çam
+Konu: Evcil Sigortası
+Email: selincam@hotmail.com
+
+Mesaj:
+
+Kedim için sağlık sigortası yaptırmak istiyorum.
+Yıllık primler ve kapsamlar hakkında bilgi verir misiniz?
+
+AI_Category: Evcil Hayvan Sigortası – Fiyat Bilgisi
+Priority: Low
+
+📨 7) Seyahat Sigortası – Vize İçin Gerekli Poliçe (Priority: Medium)
+
+Ad Soyad: Onur Güler
+Konu: Seyahat Sigortası Hk
+Email: onurguler@gmail.com
+
+Mesaj:
+
+Schengen vizesi için seyahat sigortası almam gerekiyor.
+10 günlük Avrupa seyahati için en uygun paketi paylaşabilir misiniz?
+
+AI_Category: Seyahat Sigortası – Vize Poliçesi
+Priority: Medium
+
+📨 8) Ödeme Sorunu – Şikayet (Priority: High)
+
+Ad Soyad: Hakan Şen
+Konu: Ödeme Sorunu
+Email: hakansen55@yahoo.com
+
+Mesaj:
+
+Kredi kartımdan poliçe yenileme için iki kez ödeme çekilmiş.
+Acil olarak iade talep ediyorum.
+Bu durum mağduriyet yaratıyor!
+
+AI_Category: Şikayet – Ödeme Problemi
+Priority: High
+
+📨 9) Trafik Sigortası – Araç Devir İşlemleri (Priority: Medium)
+
+Ad Soyad: Sevinç Karakuş
+Konu: Araç Devir İşlemi
+Email: sevinc.karakus@gmail.com
+
+Mesaj:
+
+Aracımı devredeceğim.
+Trafik sigortası poliçesinin devri nasıl oluyor?
+Yeni sahibine mi geçiyor yoksa iptal mi ediliyor?
+
+AI_Category: Trafik Sigortası – Devir İşlemleri
+Priority: Medium
+
+📨 10) Genel Soru – Bilgi Talebi (Priority: Low)
+
+Ad Soyad: Eda Sönmez
+Konu: Soru
+Email: edasonmez@gmail.com
+
+Mesaj:
+
+Poliçemi online olarak nereden görüntüleyebilirim?
+Herhangi bir platformunuz var mı?
+
+AI_Category: Genel – Bilgi Talebi
+Priority: Low
