@@ -23,6 +23,9 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+app.UseExceptionHandler("/Error/500");
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
