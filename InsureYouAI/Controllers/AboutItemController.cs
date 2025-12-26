@@ -1,8 +1,8 @@
 ﻿using InsureYouAI.Context;
 using InsureYouAI.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 using System.Text;
+using System.Text.Json;
 
 namespace InsureYouAI.Controllers
 {
@@ -15,6 +15,8 @@ namespace InsureYouAI.Controllers
         }
         public IActionResult AboutItemList()
         {
+            ViewBag.ControllerName = "Hakkımızda Ögeleri";
+            ViewBag.PageName = "Mevcut Hakkımızda Ögeleri";
             var values = _context.AboutItems.ToList();
             return View(values);
         }
@@ -22,6 +24,8 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public IActionResult CreateAboutItem()
         {
+            ViewBag.ControllerName = "Hakkımızda Ögeleri";
+            ViewBag.PageName = "Yeni Hakkımızda Öge Girişi";
             return View();
         }
 
@@ -36,6 +40,8 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public IActionResult UpdateAboutItem(int id)
         {
+            ViewBag.ControllerName = "Hakkımızda";
+            ViewBag.PageName = "Hakkımızda Ögeleri Güncelleme Sayfası";
             var value = _context.AboutItems.Find(id);
             return View(value);
         }
@@ -59,9 +65,9 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateAboutItemWithGoogleGemini()
         {
-            var apiKey = "AIzaSyCU20aFvDdvLqL4EdaULcFXbTcSExVwOwo";
-            var model = "gemini-2.5-pro";
-            var url = $"https://generativelanguage.googleapis.com/v1/models/{model}:generateContent?key={apiKey}";
+            var apiKey = "AIzaSyAfU0XAcaIxgkRXe9sT5BwqbaN0LJps16s";
+            var model = "gemini-2.5-flash";
+            var url = $"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={apiKey}";
             var requestBody = new
             {
                 contents = new[]

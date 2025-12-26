@@ -24,9 +24,9 @@
                         <th>Başlık</th>
                         <th>Yazar</th>
                         <th>Oluşturma Tarihi</th>
-                        <th>Sitede Gör</th>
-                        <th>Güncelle</th>
                         <th>Sil</th>
+                        <th>Güncelle</th>
+                        <th>Sitede Gör</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,13 +35,14 @@
                     {
                         count++;
                         <tr>
-                            <td>@count</td>
+                            <th>@count</th>
                             <td>@item.Title</td>
-                            <td>Yazar Adı</td>
+                            <td>@item.AppUser.Name @item.AppUser.Surname</td>
                             <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
-                            <td><a href="/Article/UpdateArticle/@item.ArticleId" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sitede Gör"><i class="bi bi-eye-fill"></i></a></td>
-                            <td><a href="/Article/UpdateArticle/@item.ArticleId" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Düzenle"><i class="bi bi-pencil-fill"></i></a></td>
+
                             <td><a href="/Article/DeleteArticle/@item.ArticleId" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sil"><i class="bi bi-trash-fill"></i></a></td>
+                            <td><a href="/Article/UpdateArticle/@item.ArticleId" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Düzenle"><i class="bi bi-pencil-fill"></i></a></td>
+                            <td><a href="/Blog/BlogDetail/@item.ArticleId" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sitede Gör"><i class="bi bi-eye-fill"></i></a></td>
 
                         </tr>
                     }
@@ -50,6 +51,7 @@
                 </tbody>
             </table>
             <a href="/Article/CreateArticle/" class="btn btn-info">Yeni Makale Girişi</a>
+            <a href="/Article/CreateArticleWithOpenAI/" class="btn btn-primary">Yapay Zeka Makale Oluşturucu</a>
         </div>
     </div>
 </div>

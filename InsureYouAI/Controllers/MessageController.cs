@@ -1,18 +1,23 @@
 ﻿using InsureYouAI.Context;
 using InsureYouAI.Entities;
+using InsureYouAINew.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InsureYouAI.Controllers
+namespace InsureYouAINew.Controllers
 {
     public class MessageController : Controller
     {
         private readonly InsureContext _context;
-        public MessageController(InsureContext context)
+        private readonly AIService _aiService;
+        public MessageController(InsureContext context, AIService aiService)
         {
             _context = context;
+            _aiService = aiService;
         }
         public IActionResult MessageList()
         {
+            ViewBag.ControllerName = "Gelen Mesajlar";
+            ViewBag.PageName = "İletişim Panelinden Gönderilen Mesaj Listesi";
             var values = _context.Messages.ToList();
             return View(values);
         }
@@ -24,8 +29,15 @@ namespace InsureYouAI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateMessage(Message message)
+        public async Task<IActionResult> CreateMessage(Message message)
         {
+            var combinedText = $"{message.Subject} - {message.MessagetDetail}";
+            var predictedCategory = await _aiService.PredictCategoryAsync(combinedText);
+            var priority = await _aiService.PredictPriorityAsync(combinedText);
+
+            message.AICategory = predictedCategory;
+            message.Priority = priority;
+
             message.IsRead = false;
             message.SendDate = DateTime.Now;
             _context.Messages.Add(message);

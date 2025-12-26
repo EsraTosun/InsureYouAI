@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "UpdateArticle";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -20,13 +19,19 @@
             <label>Kapak Fotoğraf Url</label>
             <input type="text" asp-for="CoverImageUrl" class="form-control" />
             <br />
-            <label>Makale Dety Kapak Görseli</label>
+            <label>Makale Detay Kapak Görseli</label>
             <input type="text" asp-for="MainCoverImageUrl" class="form-control" />
             <br />
             <label>Kategori</label>
-            <input type="text" asp-for="CategoryId" class="form-control" />
+            <select class="form-select" asp-items="ViewBag.Categories" asp-for="CategoryId">
+                <option value="">Kategori Seçiniz</option>
+            </select>
             <br />
-            <label>Kategori</label>
+            <label>Yazar</label>
+            <select class="form-select" asp-items="ViewBag.Authors" asp-for="AppUserId">
+                <option value="">Yazar Seçiniz</option>
+            </select>
+            <label>Makale İçeriği</label>
             <textarea class="form-control" asp-for="Content" rows="15"></textarea>
             <br />
             <button class="btn btn-success">Makaleyi Güncelle</button>

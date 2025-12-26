@@ -15,6 +15,8 @@ namespace InsureYouAI.Controllers
         }
         public IActionResult AboutList()
         {
+            ViewBag.ControllerName = "Hakkımızda";
+            ViewBag.PageName = "Mevcut Hakkımızda Yazısı";
             var values = _context.Abouts.ToList();
             return View(values);
         }
@@ -22,6 +24,8 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public IActionResult CreateAbout()
         {
+            ViewBag.ControllerName = "Hakkımızda";
+            ViewBag.PageName = "Yeni Hakkımızda Yaazı Girişi (Tema Bütünlüğünü Korumak İçin 1 Adet Hakkımızda Yazısı Giriniz)";
             return View();
         }
 
@@ -44,6 +48,8 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public IActionResult UpdateAbout(int id)
         {
+            ViewBag.ControllerName = "Hakkımızda";
+            ViewBag.PageName = "Hakkımızda Yazı Güncelleme Sayfası";
             var value = _context.Abouts.Find(id);
             return View(value);
         }
@@ -59,9 +65,9 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateAboutWithGoogleGemini()
         {
-            var apiKey = "AIzaSyCrojbzZFPDzeoYIYQQLQnQ_maNwMQI4n4";
-            var model = "gemini-2.5-pro";
-            var url = $"https://generativelanguage.googleapis.com/v1/models/{model}:generateContent?key={apiKey}";
+            var apiKey = "AIzaSyAfU0XAcaIxgkRXe9sT5BwqbaN0LJps16s";
+            var model = "gemini-2.5-flash";
+            var url = $"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={apiKey}";
             var requestBody = new
             {
                 contents = new[]
@@ -99,4 +105,3 @@ namespace InsureYouAI.Controllers
         }
     }
 }
-//$"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={apiKey}";

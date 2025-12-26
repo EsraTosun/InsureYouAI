@@ -13,6 +13,8 @@ namespace InsureYouAI.Controllers
         }
         public IActionResult CategoryList()
         {
+            ViewBag.ControllerName = "Kategoriler";
+            ViewBag.PageName = "Kategori Listesi";
             var values = _context.Categories.ToList();
             return View(values);
         }
@@ -52,6 +54,15 @@ namespace InsureYouAI.Controllers
             _context.Categories.Remove(value);
             _context.SaveChanges();
             return RedirectToAction("CategoryList");
+        }
+        public IActionResult Test()
+        {
+            return View();
+        }
+
+        public IActionResult Test2()
+        {
+            return View();
         }
     }
 }

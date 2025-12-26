@@ -7,6 +7,8 @@
         public string Subject { get; set; }
         public string Email { get; set; }
         public string MessagetDetail { get; set; }
+        public string? Priority { get; set; }
+        public string? AICategory { get; set; }
         public DateTime SendDate { get; set; }
         public bool IsRead { get; set; }
     }
