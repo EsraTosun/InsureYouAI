@@ -3,51 +3,118 @@
 @{
     ViewData["Title"] = "AboutList";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+
+    bool hasAboutContent = Model != null && Model.Any();
 }
 
-<div class="card">
+<div class="card shadow-sm border-0 rounded-4">
     <div class="card-body">
-        <div class="d-flex align-items-center">
-            <h5 class="mb-0">Hakkımızda Sayfası Listesi</h5>
-            <form class="ms-auto position-relative">
-                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
-                <input class="form-control ps-5" type="text" placeholder="search">
+
+        <!-- Header -->
+        <div class="d-flex align-items-center mb-3">
+            <h4 class="fw-bold mb-0 text-primary">
+                <i class="bi bi-info-circle"></i> Hakkımızda İçerikleri
+            </h4>
+
+            <!-- Search -->
+            <form class="ms-auto position-relative" style="max-width:260px;">
+                <div class="position-absolute top-50 translate-middle-y px-3">
+                    <i class="bi bi-search text-secondary"></i>
+                </div>
+                <input class="form-control ps-5 rounded-pill shadow-sm"
+                       type="text"
+                       placeholder="İçerik ara...">
             </form>
         </div>
-        <div class="table-responsive mt-3">
-            <table class="table align-middle">
-                <thead class="table-secondary">
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="bg-light">
                     <tr>
                         <th>Başlık</th>
-                        <th>Açıklama</th>
-                        <th>İşlemler</th>
+                        <th style="width:55%">Açıklama</th>
+                        <th class="text-end">İşlemler</th>
                     </tr>
                 </thead>
-                <tbody>
 
+                <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Title</td>
-                            <td style="white-space: normal; word-break: break-word; max-width: 400px;">
+                        <tr class="bg-white border-bottom">
+                            <!-- Title -->
+                            <td class="fw-semibold">
+                                <i class="bi bi-info-circle text-primary me-1"></i>
+                                @item.Title
+                            </td>
+
+                            <!-- Description -->
+                            <td class="text-muted small">
                                 @item.Descripiton
                             </td>
-                            <td>
-                                <div class="table-actions d-flex align-items-center gap-3 fs-6">
-                                    <a href="/Default/Index/" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sitede Gör"><i class="bi bi-eye-fill"></i></a>
-                                    <a href="/About/UpdateAbout/@item.AboutId" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Düzenle"><i class="bi bi-pencil-fill"></i></a>
-                                    <a href="/About/DeleteAbout/@item.AboutId" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sil"><i class="bi bi-trash-fill"></i></a>
+
+                            <!-- Actions -->
+                            <td class="text-end">
+                                <div class="d-flex justify-content-end gap-2">
+
+                                    <a href="/Default/Index/"
+                                       class="btn btn-outline-primary">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+
+                                    <a href="/About/UpdateAbout/@item.AboutId"
+                                       class="btn btn-outline-warning">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+
+                                    <a href="/About/DeleteAbout/@item.AboutId"
+                                       class="btn btn-outline-danger">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+
                                 </div>
                             </td>
                         </tr>
                     }
-
-
                 </tbody>
             </table>
-            <a href="/About/CreateAbout/" class="btn btn-info">Yeni Hakkımızda Yazısı Girişi</a>
+        </div>
+
+        <!-- CTA + Bilgilendirme -->
+        <div class="mt-4 d-flex flex-column gap-3">
+
+            @if (!hasAboutContent)
+            {
+                <a href="/About/CreateAbout/"
+                   class="btn btn-primary rounded-pill px-4 align-self-start">
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Yeni Hakkımızda Yazısı Ekle
+                </a>
+            }
+            else
+            {
+                <button class="btn btn-secondary rounded-pill px-4 align-self-start" disabled>
+                    <i class="bi bi-lock-fill me-1"></i>
+                    Yeni Hakkımızda Yazısı Ekle
+                </button>
+
+                <div class="alert alert-info d-flex align-items-start gap-2">
+                    <i class="bi bi-info-circle-fill fs-5"></i>
+                    <div>
+                        <strong>Bilgilendirme</strong><br />
+                        Hakkımızda sayfası için yalnızca <b>1 adet içerik</b> tanımlanabilir.
+                        Mevcut içeriği <b>Düzenle</b> butonu ile güncelleyebilirsiniz.
+                    </div>
+                </div>
+            }
+
         </div>
     </div>
 </div>
 
-
+<style>
+    .table-row-hover:hover {
+        background-color: #f8f9fa;
+        transition: .2s;
+    }
+</style>
