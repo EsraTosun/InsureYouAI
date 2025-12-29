@@ -2,7 +2,7 @@
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace InsureYouAINew.Controllers
+namespace InsureYouAI.Controllers
 {
     public class ElevenLabsAIController : Controller
     {
