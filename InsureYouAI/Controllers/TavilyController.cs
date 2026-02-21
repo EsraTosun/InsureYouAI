@@ -14,8 +14,8 @@ namespace InsureYouAI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        private readonly string tavilyApiKey = "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";
-        private readonly string openAIApiKey = "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";
+        private readonly string tavilyApiKey = "api-key";
+        private readonly string openAIApiKey = "api-key";
 
         [HttpGet]
         public IActionResult Search()
