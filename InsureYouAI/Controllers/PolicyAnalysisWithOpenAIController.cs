@@ -7,7 +7,7 @@ namespace InsureYouAI.Controllers
 {
     public class PolicyAnalysisWithOpenAIController : Controller
     {
-        private readonly string apiKey = "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";
+        private readonly string apiKey = "api-key";
 
         [HttpGet]
         public IActionResult PdfAnalyze()
