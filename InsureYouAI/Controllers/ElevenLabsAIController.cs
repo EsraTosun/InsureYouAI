@@ -31,8 +31,8 @@ namespace InsureYouAI.Controllers
                 return View();
             }
 
-            var apiKey = "sk_a3df1ffc702aa97add484de7b0e9431601dfc4dee24e5bf5";
-            var voiceId = "EXAVITQu4vr4xnSDxMaL";  // Rachel
+            var apiKey = "api-key";
+            var voiceId = "id";  // Rachel
 
             var url = $"https://api.elevenlabs.io/v1/text-to-speech/{voiceId}/stream";
 
@@ -93,8 +93,8 @@ namespace InsureYouAI.Controllers
                 return View();
             }
 
-            var apiKey = "sk_a3df1ffc702aa97add484de7b0e9431601dfc4dee24e5bf5";
-            var voiceId = "EXAVITQu4vr4xnSDxMaL";  // Rachel
+            var apiKey = "api-key";
+            var voiceId = "id";  // Rachel
 
             var url = $"https://api.elevenlabs.io/v1/text-to-speech/{voiceId}/stream";
 
@@ -163,8 +163,8 @@ namespace InsureYouAI.Controllers
 
 
             // 2) ELEVENLABS AYARLARI
-            string apiKey = "sk_a3df1ffc702aa97add484de7b0e9431601dfc4dee24e5bf5";
-            string voiceId = "EXAVITQu4vr4xnSDxMaL"; // Rachel (güzel bir ses)
+            string apiKey = "api-key";
+            string voiceId = "id"; // Rachel (güzel bir ses)
             string url = $"https://api.elevenlabs.io/v1/text-to-speech/{voiceId}/stream";
 
             var client = _httpClientFactory.CreateClient();
