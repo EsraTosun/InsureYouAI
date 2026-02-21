@@ -94,7 +94,7 @@ namespace InsureYouAI.Controllers
             ViewBag.ControllerName = "AI Destekli Sigorta Planı";
             ViewBag.PageName = "Kullanıcıya Özel AI Destekli Sigorta Planı Belirleme";
 
-            string apiKey = "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";
+            string apiKey = "api-key";
             // Kullanıcı girdilerini JSON'a çeviriyoruz
             var userJson = JsonConvert.SerializeObject(model);
 
