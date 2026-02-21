@@ -82,4 +82,4 @@ This project stands out by its ability to orchestrate multiple AI providers, ens
 
 ## 👩‍💻 Developer
 
-**Esra Tosun** *Software Engineer | Backend & AI Enthusiast*
+**Esra Tosun** *Software Engineer*
