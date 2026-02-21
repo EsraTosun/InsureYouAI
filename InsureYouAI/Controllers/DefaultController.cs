@@ -42,7 +42,7 @@ namespace InsureYouAI.Controllers
             #region OpenAI_Analiz
             try
             {
-                string apiKey = "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";
+                string apiKey = "api-key";
                 string prompt = $"Sen bir sigorta firmasının müşteri iletişim asistanısın.\r\n\r\n" +
                                 $"Kurumsal ama samimi, net ve anlaşılır bir dille yaz.\r\n" +
                                 $"Yanıtlarını 2–3 paragrafla sınırla.\r\n" +
