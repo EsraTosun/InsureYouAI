@@ -58,7 +58,7 @@ namespace InsureYouAI.Controllers
 
         public async Task<IActionResult> CreateTestimonialWithClaudeAI()
         {
-            string apiKey = "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";
+            string apiKey = "api-key";
 
             string prompt = "Bir sigorta şirketi için müşteri deneyimlerine dair yorum oluşturmak istiyorum yani İngilizce karşılığı ile: testimonial. Bu alanda Türkçe olarak 6 tane yorum, 6 tane müşteri adı ve soyadı, bu müşterilerin unvanı olsun. Buna göre içeriği hazırla.";
 
