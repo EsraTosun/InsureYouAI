@@ -53,10 +53,10 @@ namespace InsureYouAI.Controllers
         public async Task<IActionResult> AddComment(Comment comment)
         {
             comment.CommentDate = DateTime .Now;
-            comment.AppUserId = "ce53015c-ca49-4286-bc35-3948161501b8";
+            comment.AppUserId = "id";
             using (var client = new HttpClient())
             {
-                var apiKey = "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";
+                var apiKey = "api-key";
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
                 try
