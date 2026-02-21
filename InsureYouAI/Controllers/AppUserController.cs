@@ -55,7 +55,7 @@ namespace InsureYouAI.Controllers
             //Makaleleri tek bir metinde toplayalım
             var allArticles = string.Join("\n\n", articles);
 
-            var apiKey = "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";
+            var apiKey = "api-key";
 
             //Promptun Yazılması
 
@@ -164,7 +164,7 @@ namespace InsureYouAI.Controllers
             //Makaleleri tek bir metinde toplayalım
             var allComments = string.Join("\n\n", comments);
 
-            var apiKey = "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";
+            var apiKey = "api-key";
 
             //Promptun Yazılması
 
