@@ -22,7 +22,7 @@ namespace InsureYouAI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateImageWithOpenAI(string prompt)
         {
-            var apiKey = "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";
+            var apiKey = "api-key";
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
